@@ -11,7 +11,7 @@ ctx = ssl.create_default_context()
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 
-kongpanionurl = 'https://www.kongregate.com/kongpanions'
+kongpanionurl = 'https://www.kongregate.com/badges'
 
 def badge():
 
@@ -20,7 +20,7 @@ def badge():
     html = urllib.request.urlopen(kongpanionurl, context = ctx).read()
     soup = BeautifulSoup(html, "html.parser")
 
-    dayblob = str(soup('dt', class_='day click_box today'))
+    dayblob = str(soup('a', class_='btn btn_action phl imgExt'))
 
     gameurl = re.findall('www.kongregate.com/[^\"]+', dayblob)
 
